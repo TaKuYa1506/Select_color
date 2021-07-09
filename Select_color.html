@@ -1,0 +1,26 @@
+<HTML>
+    <HEAD>
+    <meta charset="utf-8">
+    <TITLE>タイトル名</TITLE>
+    
+    </HEAD>
+    <BODY>
+        <input style="border:2px solid #F00" type="text" id="rad_text" value="0"/>
+        <input style="border:2px solid #0F0" type="text" id="green_text" value="0"/>
+        <input style="border:2px solid #00F" type="text" id="blue_text" value="0"/>
+        <input type="button" value="ボタン" onclick="clickBtn1()" />
+        
+        <div id="color_box">■</div>
+<script>
+    function clickBtn1() {
+        const red_value = document.getElementById("rad_text").value;
+        const green_value = document.getElementById("green_text").value;
+        const blue_value = document.getElementById("blue_text").value;
+        
+        const hoge = document.getElementById("color_box");
+        //hoge.textContent = red_value;
+        document.getElementById("color_box").style.color = "#" + red_value + green_value + blue_value;// = red_value + green_value + blue_value;
+    }
+</script>      
+    </BODY>
+</HTML>
