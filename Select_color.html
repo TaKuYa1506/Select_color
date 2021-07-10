@@ -1,26 +1,48 @@
 <HTML>
-    <HEAD>
-    <meta charset="utf-8">
-    <TITLE>タイトル名</TITLE>
-    
-    </HEAD>
-    <BODY>
-        <input style="border:2px solid #F00" type="text" id="rad_text" value="0"/>
-        <input style="border:2px solid #0F0" type="text" id="green_text" value="0"/>
-        <input style="border:2px solid #00F" type="text" id="blue_text" value="0"/>
-        <input type="button" value="ボタン" onclick="clickBtn1()" />
-        
-        <div id="color_box">■</div>
+<HEAD><meta charset="utf-8"><TITLE>Select_color</TITLE></HEAD>
+<BODY >
+<div style="font-size: 12em;" id="color_box">　</div>
+
+<div>
+    <div id="color_code"></div>
+    <input type="range"  id="red_range"    onchange="change_range()" style="color:#F00" min="0" max="255" value="0">
+    <input type="number" id="red_number"   onchange="change_num()"   style="border:2px solid #F00" size="3" value="0"><br>
+    <input type="range"  id="green_range"  onchange="change_range()" style="" min="0" max="255" value="0">
+    <input type="number" id="green_number" onchange="change_num()"   style="border:2px solid #0F0" size="3" value="0"><br>
+    <input type="range"  id="blue_range"   onchange="change_range()" style="" min="0" max="255" value="0">
+    <input type="number" id="blue_number"  onchange="change_num()"   style="border:2px solid #00F" size="3" value="0"><br>
+    <input type="color" onchange="change_colorbox()">
+</div>        
+
+</BODY>
 <script>
-    function clickBtn1() {
-        const red_value = document.getElementById("rad_text").value;
-        const green_value = document.getElementById("green_text").value;
-        const blue_value = document.getElementById("blue_text").value;
-        
-        const hoge = document.getElementById("color_box");
-        //hoge.textContent = red_value;
-        document.getElementById("color_box").style.color = "#" + red_value + green_value + blue_value;// = red_value + green_value + blue_value;
+    function RGB2colorcode(red_id, green_id, blue_id){
+        return "#"+ ("00"+parseInt(document.getElementById(red_id).value).toString(16)).slice(-2) 
+                  + ("00"+parseInt(document.getElementById(green_id).value).toString(16)).slice(-2) 
+                  + ("00"+parseInt(document.getElementById(blue_id).value).toString(16)).slice(-2);
     }
+
+    function change_range(){
+//        this_range.nextElementSibling.value = this_range.value;
+//        change_color();
+        console.log(RGB2colorcode("red_range","green_range","blue_range"));
+    }
+    function change_num(this_number){
+        this_number.previousElementSibling.value = this_number.value;
+        change_color();
+    }
+    function change_colorbox(this_colorbox){
+        console.log(this_colorbox.value);
+    }
+    function change_color(){
+        const red_value = parseInt(document.getElementById("red_num").value)
+        const green_value = parseInt(document.getElementById("green_num").value);
+        const blue_value = parseInt(document.getElementById("blue_num").value);
+        var color_str = "#" + ("00"+red_value.toString(16)).slice(-2) + ("00"+green_value.toString(16)).slice(-2) + ("00"+blue_value.toString(16)).slice(-2);
+
+        document.getElementById("color_code").innerHTML = color_str;
+        document.getElementById("color_box").style.backgroundColor = color_str; 
+    }
+
 </script>      
-    </BODY>
 </HTML>
