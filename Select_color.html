@@ -4,13 +4,13 @@
 <div style="font-size: 12em;" id="color_box">　</div>
 
 <div>
-    <div id="color_code">#</div>
-    <input type="range"  id="red_range"    style="color:#F00" min="0" max="255" value="0">
-    <input type="number" id="red_number"   style="border:2px solid #F00" size="3" value="0"><br>
-    <input type="range"  id="green_range"  style="" min="0" max="255" value="0">
-    <input type="number" id="green_number" style="border:2px solid #0F0" size="3" value="0"><br>
-    <input type="range"  id="blue_range"   style="" min="0" max="255" value="0">
-    <input type="number" id="blue_number"  style="border:2px solid #00F" size="3" value="0"><br>
+    <div id="color_code">#000000</div>
+    <input type="number" id="red_number"   style="border:2px solid #F00" min="0" max="255" size="5" value="0">
+    <input type="range"  id="red_range"    style="width: 80%; -webkit-appearance: none; background:#F00" min="0" max="255" value="0" ><br>
+    <input type="number" id="green_number" style="border:2px solid #0F0" min="0" max="255" size="5" value="0">
+    <input type="range"  id="green_range"  style="width: 80%; -webkit-appearance: none; background:#0F0;" min="0" max="255" value="0"><br>
+    <input type="number" id="blue_number"  style="border:2px solid #00F" min="0" max="255" size="5" value="0">
+    <input type="range"  id="blue_range"   style="width: 80%; -webkit-appearance: none; background:#00F" min="0" max="255" value="0"><br>
     <input type="color"  id="pic_color">
 </div>        
 
@@ -27,6 +27,7 @@
         document.getElementById("blue_number").onchange = change_value;
 
         document.getElementById("pic_color").onchange = change_pic_color;
+        change_color_code();
     }
 
     // RGBのオブジェクトIDを渡すと#RRGGBBが返る
