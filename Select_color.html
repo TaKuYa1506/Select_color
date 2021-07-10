@@ -4,7 +4,7 @@
 <div style="font-size: 12em;" id="color_box">　</div>
 
 <div>
-    <div id="color_code"></div>
+    <div id="color_code">#</div>
     <input type="range"  id="red_range"    style="color:#F00" min="0" max="255" value="0">
     <input type="number" id="red_number"   style="border:2px solid #F00" size="3" value="0"><br>
     <input type="range"  id="green_range"  style="" min="0" max="255" value="0">
@@ -26,7 +26,7 @@
         document.getElementById("green_number").onchange = change_value;
         document.getElementById("blue_number").onchange = change_value;
 
-        document.getElementById("color_box").onchange = change_colorbox;
+        //document.getElementById("color_box").onchange = change_colorbox;
     }
 
     // RGBのオブジェクトIDを渡すと#RRGGBBが返る
@@ -39,21 +39,16 @@
     // スライダー、テキストボックスの値が変化したとき
     function change_value(){
         color_code_obj.innerHTML = RGB2colorcode("red_"+this.type,"green_"+this.type,"blue_"+this.type);
+        change_color_code()
     }
 
     function change_colorbox(this_box){
-        console.log(this_box.value);
         color_code_obj.innerHTML = this_box.value;
+        change_color_code()
     }
 
     function change_color_code(){
-        const red_value = parseInt(document.getElementById("red_num").value)
-        const green_value = parseInt(document.getElementById("green_num").value);
-        const blue_value = parseInt(document.getElementById("blue_num").value);
-        var color_str = "#" + ("00"+red_value.toString(16)).slice(-2) + ("00"+green_value.toString(16)).slice(-2) + ("00"+blue_value.toString(16)).slice(-2);
-
-        color_code_obj.innerHTML = color_str;
-        document.getElementById("color_box").style.backgroundColor = color_str; 
+        document.getElementById("color_box").style.backgroundColor = color_code_obj.innerHTML; 
     }
 
 </script>      
