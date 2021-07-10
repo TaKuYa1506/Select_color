@@ -11,38 +11,48 @@
     <input type="number" id="green_number" style="border:2px solid #0F0" size="3" value="0"><br>
     <input type="range"  id="blue_range"   style="" min="0" max="255" value="0">
     <input type="number" id="blue_number"  style="border:2px solid #00F" size="3" value="0"><br>
-    <input type="color" onchange="change_colorbox()">
+    <input type="color"  id="color_box" onchange="change_colorbox(this)">
 </div>        
 
 </BODY>
 <script>
+    const color_code_obj = document.getElementById("color_code");
+    // 起動時のイベント紐づけ
+    function load_now(){
+        document.getElementById("red_range").onchange = change_value;
+        document.getElementById("green_range").onchange = change_value;
+        document.getElementById("blue_range").onchange = change_value;
+        document.getElementById("red_number").onchange = change_value;
+        document.getElementById("green_number").onchange = change_value;
+        document.getElementById("blue_number").onchange = change_value;
+
+        document.getElementById("color_box").onchange = change_colorbox;
+    }
+
+    // RGBのオブジェクトIDを渡すと#RRGGBBが返る
     function RGB2colorcode(red_id, green_id, blue_id){
         return "#"+ ("00"+parseInt(document.getElementById(red_id).value).toString(16)).slice(-2) 
                   + ("00"+parseInt(document.getElementById(green_id).value).toString(16)).slice(-2) 
                   + ("00"+parseInt(document.getElementById(blue_id).value).toString(16)).slice(-2);
     }
 
-    function load_now(){
-        document.getElementById("red_range").onchange = change_value;
-        document.getElementById("green_range").onchange = change_value;
-        document.getElementById("blue_range").onchange = change_value;
-        document.getElementById("red_number").onchange = change_value;
-        document.getElementById("green_range").onchange = change_value;
-        document.getElementById("blue_range").onchange = change_value;
-    }
+    // スライダー、テキストボックスの値が変化したとき
     function change_value(){
-        console.log(RGB2colorcode("red_"+this.type,"green_"+this.type,"blue_"+this.type));
+        color_code_obj.innerHTML = RGB2colorcode("red_"+this.type,"green_"+this.type,"blue_"+this.type);
     }
-    function change_colorbox(this_colorbox){
-        console.log(this_colorbox.value);
+
+    function change_colorbox(this_box){
+        console.log(this_box.value);
+        color_code_obj.innerHTML = this_box.value;
     }
-    function change_color(){
+
+    function change_color_code(){
         const red_value = parseInt(document.getElementById("red_num").value)
         const green_value = parseInt(document.getElementById("green_num").value);
         const blue_value = parseInt(document.getElementById("blue_num").value);
         var color_str = "#" + ("00"+red_value.toString(16)).slice(-2) + ("00"+green_value.toString(16)).slice(-2) + ("00"+blue_value.toString(16)).slice(-2);
 
-        document.getElementById("color_code").innerHTML = color_str;
+        color_code_obj.innerHTML = color_str;
         document.getElementById("color_box").style.backgroundColor = color_str; 
     }
 
