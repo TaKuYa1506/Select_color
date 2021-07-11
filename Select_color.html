@@ -1,7 +1,7 @@
 <HTML>
 <HEAD><meta charset="utf-8"><TITLE>Select_color</TITLE></HEAD>
 <BODY onload="load_now()">
-<div style="font-size: 12em;" id="color_box">　</div>
+<div style="width:12em; height:12em" id="color_box"> </div>
 
 <div>
     <div id="color_code">#000000</div>
@@ -19,9 +19,14 @@
     const color_code_obj = document.getElementById("color_code");
     // 起動時のイベント紐づけ
     function load_now(){
+        document.getElementById("red_range").oninput = change_value;
+        document.getElementById("green_range").oninput = change_value;
+        document.getElementById("blue_range").oninput = change_value;
+
         document.getElementById("red_range").onchange = change_value;
         document.getElementById("green_range").onchange = change_value;
         document.getElementById("blue_range").onchange = change_value;
+
         document.getElementById("red_number").onchange = change_value;
         document.getElementById("green_number").onchange = change_value;
         document.getElementById("blue_number").onchange = change_value;
